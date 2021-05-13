@@ -1,13 +1,13 @@
 "=============================================================
-" __  __
-"/\ \/\ \  __
-"\ \ \ \ \/\_\    ___ ___   _ __   ___
-" \ \ \ \ \/\ \ /' __` __`\/\`'__\/'___\
-"  \ \ \_/ \ \ \/\ \/\ \/\ \ \ \//\ \__/
-"   \ `\___/\ \_\ \_\ \_\ \_\ \_\\ \____\
-"    `\/__/  \/_/\/_/\/_/\/_/\/_/ \/____/
-"
-"    By Simon Robles
+"=          __  __                                           =             
+"=         /\ \/\ \  __                                      =
+"=         \ \ \ \ \/\_\    ___ ___   _ __   ___             =
+"=          \ \ \ \ \/\ \ /' __` __`\/\`'__\/'___\           =
+"=           \ \ \_/ \ \ \/\ \/\ \/\ \ \ \//\ \__/           =
+"=            \ `\___/\ \_\ \_\ \_\ \_\ \_\\ \____\          =
+"=             `\/__/  \/_/\/_/\/_/\/_/\/_/ \/____/          =
+"=                                                           = 
+"=                                  By Simon Robles          =
 "=============================================================
 
 filetype plugin indent on
@@ -31,7 +31,12 @@ set ignorecase
 
 let $RTP=split(&runtimepath, ',')[0]
 let $RC="$HOME/.vim/vimrc"
+let $ATTY="$HOME/.config/alacritty/alacritty.yml"
 set path=.,**   
+
+"====================================================================
+"=                       SYNTAX HIGHLIGHTING                        =
+"====================================================================
 
 syntax enable
 set cursorline
@@ -40,17 +45,21 @@ highlight LineNr ctermfg=07
 highlight Statement ctermfg=05
 
 hi clear CursorLine
-hi CursorLineNr term=bold cterm=bold ctermfg=03 gui=bold
+hi CursorLineNr term=bold cterm=bold ctermfg=03 ctermbg=08 gui=bold
+hi CursorLine ctermbg=08
 
-"""""""""""""""""""""""""""""""""""""""
-" WHITESPACE
-"""""""""""""""""""""""""""""""""""""""
+hi clear Visual
+hi Visual term=reverse ctermfg=0 ctermbg=15
+
+"====================================================================
+"=                              WHITESPACE                          =
+"====================================================================
 set listchars=space:·,trail:·,eol:¶
 nmap <F3> :set list!<CR> 
 
-"""""""""""""""""""""""""""""""""""""""
-" VIM STATUS LINE
-"""""""""""""""""""""""""""""""""""""""
+"====================================================================
+"=                            VIM STATUSLINE                        =
+"====================================================================
 " For more information see https://shapeshed.com/vim-statuslines/
 " Also see https://learnvimscriptthehardway.stevelosh.com/chapters/17.html
 " Tells vim to always display the status line
@@ -84,9 +93,9 @@ set statusline+=\ %8*%6*\ %Y\ %5*
 "set statusline+=\ %7*%1*\ %v:%l\/%L
 "set statusline+=\ %8*%6*\ %Y\ %5*
 
-"""""""""""""""""""""""""""""""""""""""
-" TABLINE 
-"""""""""""""""""""""""""""""""""""""""
+"====================================================================
+"=                              TABLINE                             =
+"====================================================================
 hi TabLine      ctermfg=Black  ctermbg=Gray     	cterm=NONE
 hi TabLineFill  ctermfg=White  ctermbg=8     cterm=NONE
 hi TabLineSel   ctermfg=White  ctermbg=Black  		cterm=NONE
@@ -129,16 +138,17 @@ function MyTabLabel(n)
   return fnamemodify(bufname(buflist[winnr - 1]), ':t')
 endfunction
 
-"""""""""""""""""""""""""""""""""""""""
-" NERD TREE
-"""""""""""""""""""""""""""""""""""""""
+"====================================================================
+"=                              NERD TREE                           =
+"====================================================================
 let g:NERDTreeDirArrowExpandable = ''
 let g:NERDTreeDirArrowCollapsible = '' 
 nmap <F6> :NERDTreeToggle<CR>
 
-"""""""""""""""""""""""""""""""""""""""
-" VIM AIRLINE
-"""""""""""""""""""""""""""""""""""""""
+"====================================================================
+"=                             VIM AIRLINE                         =
+"====================================================================
+
 ""let g:airline_theme='base16_chalk'
 ""let g:airline_theme='solarized'
 ""let g:airline_theme= 'base16_gruvbox_dark_hard'
