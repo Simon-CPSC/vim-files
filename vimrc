@@ -20,6 +20,7 @@ set noswapfile
 set shiftwidth=4 tabstop=4 softtabstop=4 expandtab autoindent smartindent
 set pastetoggle=<F2>
 set lazyredraw 
+set wrap linebreak nolist
 hi ColorColumn ctermbg=8
 
 " Display 'n' lines above/below the cursor when scrolling with a mouse
@@ -29,6 +30,7 @@ set scrolloff=5
 set incsearch
 set ignorecase
 
+" Path Variables
 let $RTP=split(&runtimepath, ',')[0]
 let $RC="$HOME/.vim/vimrc"
 let $ATTY="$HOME/.config/alacritty/alacritty.yml"
@@ -52,7 +54,7 @@ hi clear Visual
 hi Visual term=reverse ctermfg=0 ctermbg=15
 
 "====================================================================
-"=                              WHITESPACE                          =
+"=                              LIST MODE                           =
 "====================================================================
 set listchars=space:·,trail:·,eol:¶
 nmap <F3> :set list!<CR> 
@@ -66,24 +68,24 @@ nmap <F3> :set list!<CR>
 set laststatus=2
 
 " Colors for the status line (use 0-15 for system colors)
-hi User1 ctermfg=15 ctermbg=8
-hi User2 ctermfg=3 ctermbg=none
-hi User3 ctermfg=0 ctermbg=3
-hi User4 ctermfg=3 ctermbg=8
-hi User5 ctermfg=6 ctermbg=none
-hi User6 ctermfg=0 ctermbg=6
-hi User7 ctermfg=8 ctermbg=none
-hi User8 ctermfg=6 ctermbg=8
-hi User9 ctermfg=none ctermbg=8
-hi User10 ctermfg=none ctermbg=3
+hi User1 ctermfg=15     ctermbg=8
+hi User2 ctermfg=0      ctermbg=7
+hi User3 ctermfg=8      ctermbg=7
+hi User4 ctermfg=0      ctermbg=3
+hi User5 ctermfg=0      ctermbg=6
+hi User6 ctermfg=8      ctermbg=8
+
+hi User7 ctermfg=8      ctermbg=none
+hi User8 ctermfg=6      ctermbg=8
+hi User9 ctermfg=none   ctermbg=8
 
 set statusline=
-set statusline+=%3*\ %2*%3*%f\ %4*  
-set statusline+=%1*\ %1*%{mode()}
-set statusline+=%1*\ %m%7*
-set statusline+=%9*%=
-set statusline+=\ %7*%1*\ %v:%l\/%L
-set statusline+=\ %8*%6*\ %Y\ %5*
+set statusline+=%4*\ %f\   
+set statusline+=%1*\ %{mode()}
+set statusline+=%1*\ %m
+set statusline+=%1*%=
+set statusline+=%1*\ %2*\ %v\ %3*┃%2*\ %l\/%L
+set statusline+=\ %2*%5*\ %Y\  
 
 "set statusline=
 "set statusline+=%2*%3*%f%4*
@@ -144,61 +146,3 @@ endfunction
 let g:NERDTreeDirArrowExpandable = ''
 let g:NERDTreeDirArrowCollapsible = '' 
 nmap <F6> :NERDTreeToggle<CR>
-
-"====================================================================
-"=                             VIM AIRLINE                         =
-"====================================================================
-
-""let g:airline_theme='base16_chalk'
-""let g:airline_theme='solarized'
-""let g:airline_theme= 'base16_gruvbox_dark_hard'
-""let g:airline_theme= 'fruit_punch'
-""let g:airline_theme= 'term'
-""let g:airline_theme= 'base16_google'
-"let g:airline_theme= 'zenburn'
-"let g:airline#extensions#tabline#enabled = 0
-"
-"if !exists('g:airline_symbols')
-"  let g:airline_symbols = {}
-"endif
-"
-"" unicode symbols
-"let g:airline_left_sep = '»'
-""let g:airline_left_sep = '▶'
-"let g:airline_left_sep = ''
-"let g:airline_right_sep = '«'
-""let g:airline_right_sep = '◀'
-"let g:airline_right_sep = ''
-"let g:airline_symbols.crypt = '🔒'
-"let g:airline_symbols.linenr = '☰'
-"let g:airline_symbols.linenr = '␊'
-"let g:airline_symbols.linenr = '␤'
-"let g:airline_symbols.linenr = '¶'
-"let g:airline_symbols.maxlinenr = ''
-"let g:airline_symbols.maxlinenr = '㏑'
-"let g:airline_symbols.branch = '⎇'
-"let g:airline_symbols.paste = 'ρ'
-"let g:airline_symbols.paste = 'Þ'
-"let g:airline_symbols.paste = '∥'
-"let g:airline_symbols.spell = 'Ꞩ'
-"let g:airline_symbols.notexists = 'Ɇ'
-"let g:airline_symbols.whitespace = 'Ξ'
-"
-"" powerline symbols
-""let g:airline_left_sep = ''
-""let g:airline_left_alt_sep = ''
-""let g:airline_right_sep = ''
-""let g:airline_right_alt_sep = ''
-""let g:airline_left_sep = ''
-""let g:airline_left_alt_sep = ''
-""let g:airline_right_sep = ''
-""let g:airline_right_alt_sep = ''
-"let g:airline_left_sep = ' '
-"let g:airline_left_alt_sep = '|'
-"let g:airline_right_sep = ' '
-"let g:airline_right_alt_sep = '|'
-"let g:airline_symbols.branch = ''
-"let g:airline_symbols.readonly = ''
-"let g:airline_symbols.linenr = '☰  '
-"let g:airline_symbols.maxlinenr = ' '
-"let g:airline_symbols.dirty='⚡'
